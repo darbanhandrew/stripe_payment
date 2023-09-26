@@ -118,14 +118,18 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-#	"*": {
-#		"on_update": "method",
-#		"on_cancel": "method",
-#		"on_trash": "method"
-#	}
-# }
-
+doc_events = {
+	"Subscription Plan": {
+		"before_save": "stripe_payment.api.subscription_plan_insert",
+	},
+	"Subscription Coupon": {
+		"before_save":"stripe_payment.api.fill_stripe_coupon_id",
+	}
+#        "Subscription":{
+#                "before_save":"stripe_payment.api.apply_coupon",
+#        }
+}
+#
 # Scheduled Tasks
 # ---------------
 
